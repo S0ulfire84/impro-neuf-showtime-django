@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block content %}
+<h2>Shows</h2>
+<ul>
+  {% for show in shows %}
+  <li>{{ show.event.title }}</li>
+  {% empty %}
+  <li>No shows available.</li>
+  {% endfor %}
+</ul>
+
+<h3>Add New Show</h3>
+<form method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Add Show</button>
+</form>
+{% endblock %}
