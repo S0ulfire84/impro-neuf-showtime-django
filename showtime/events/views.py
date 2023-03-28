@@ -17,3 +17,16 @@ def show_list(request):
 
     context = {'shows': shows, 'form': form}
     return render(request, 'show_list.html', context)
+
+@login_required
+def add_show(request):
+    if request.method == 'POST':
+        form = ShowForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('show_list')
+    else:
+        form = ShowForm()
+
+    context = {'form': form}
+    return render(request, 'add_show.html', context)

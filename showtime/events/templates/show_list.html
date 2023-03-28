@@ -8,9 +8,5 @@
   {% endfor %}
 </ul>
 
-<h3>Add New Show</h3>
-<form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Add Show</button>
-</form>
+<a href="{% url 'add_show' %}">Add New Show</a>
 {% endblock %}
