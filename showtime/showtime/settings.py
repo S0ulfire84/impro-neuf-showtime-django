@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-drw^w@znchc+=i-c84g6axpjpb8hvj%kmnbpyc5mmfk2c00y+k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['*'] # For Heroku production
+ALLOWED_HOSTS = []
 
 LOGIN_URL = '/login/'
 
@@ -52,7 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # For Heroku production
 ]
 
 ROOT_URLCONF = 'showtime.urls'
@@ -85,9 +83,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-db_from_env = dj_database_url.config(conn_max_age=600)  # For Heroku production
-DATABASES['default'].update(db_from_env)  # For Heroku production
 
 
 # Password validation
@@ -128,9 +123,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # For Heroku production
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
