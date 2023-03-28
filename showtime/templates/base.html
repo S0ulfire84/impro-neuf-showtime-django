@@ -25,7 +25,22 @@
       </h1>
     </header>
 
-    <!-- Add the content section here -->
-    <div class="container">{% block content %}{% endblock %}</div>
+    <!-- Add the wrapper element -->
+    <div class="wrapper">
+      <!-- Add the sidebar navigation -->
+      <nav class="sidebar">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/shows">Shows</a></li>
+          <li><a href="/teams">Teams</a></li>
+          <li><a href="/workshops">Workshops</a></li>
+        </ul>
+      </nav>
+
+      <!-- Wrap the container in a main-content element -->
+      <div class="main-content">
+        <div class="container">{% block content %}{% endblock %}</div>
+      </div>
+    </div>
   </body>
 </html>

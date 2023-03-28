@@ -13,24 +13,37 @@ body {
 }
 
 table {
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #333;
+  border: #333 1px solid;
 }
 
 th,
 td {
   padding: 8px;
   text-align: left;
-  border-bottom: 1px solid #ccc;
 }
 
 th {
-  background-color: #555;
+  background-color: #111;
   color: white;
+  border-bottom: 1px solid #444;
+}
+
+tr:nth-child(even) {
+  background-color: #000;
+}
+
+tr:nth-child(odd) {
+  background-color: #111;
 }
 
 tr:hover {
-  background-color: #555;
+  background-color: #fc5050;
   cursor: pointer;
 }
 
@@ -60,4 +73,40 @@ a:hover {
   height: 40px;
   margin-right: 1rem;
   vertical-align: middle;
+}
+
+/* Add these styles for the sidebar */
+.wrapper {
+  display: flex;
+}
+
+.sidebar {
+  background-color: #111;
+  padding: 1rem;
+  width: 100px;
+  min-height: calc(100vh - 2rem);
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 5px;
+  border-radius: 5px;
+}
+
+.sidebar li a:hover {
+  background-color: #fc5050;
+  color: white;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 1rem;
 }
