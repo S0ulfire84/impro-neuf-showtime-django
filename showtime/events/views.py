@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Show
-from .forms import ShowForm
+from .models import Show, Team
+from .forms import ShowForm, TeamForm
 
+# Show List
 @login_required
 def show_list(request):
     shows = Show.objects.all()
@@ -18,6 +19,7 @@ def show_list(request):
     context = {'shows': shows, 'form': form}
     return render(request, 'show_list.html', context)
 
+# Add Show
 @login_required
 def add_show(request):
     if request.method == 'POST':
@@ -30,3 +32,24 @@ def add_show(request):
 
     context = {'form': form}
     return render(request, 'add_show.html', context)
+
+# Team List
+@login_required
+def team_list(request):
+    teams = Team.objects.all()
+    context = {'teams': teams}
+    return render(request, 'team_list.html', context)
+
+# Add Team
+@login_required
+def add_team(request):
+    if request.method == 'POST':
+        form = TeamForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('team_list')
+    else:
+        form = TeamForm()
+
+    context = {'form': form}
+    return render(request, 'add_team.html', context)

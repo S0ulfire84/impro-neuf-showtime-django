@@ -1,0 +1,12 @@
+{% extends "base.html" %} {% block content %}
+<h2>Teams</h2>
+<ul>
+  {% for team in teams %}
+  <li>{{ team.name }}</li>
+  {% empty %}
+  <li>No teams available.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'add_team' %}">Add New Team</a>
+{% endblock %}

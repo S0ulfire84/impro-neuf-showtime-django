@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from events.views import show_list, add_show
+from events.views import show_list, add_show, team_list, add_team
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +24,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('shows/', show_list, name='show_list'),
     path('shows/add/', add_show, name='add_show'),
+    path('teams/', team_list, name='team_list'),
+    path('teams/add/', add_team, name='add_team'),
 ]
