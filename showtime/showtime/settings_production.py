@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-drw^w@znchc+=i-c84g6axpjpb8hvj%kmnbpyc5mmfk2c00y+k
 DEBUG = False
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['<your_heroku_app_name>.herokuapp.com'] # For Heroku production
+ALLOWED_HOSTS = ['impro-neuf-showtime.herokuapp.com'] # For Heroku production
 
 LOGIN_URL = '/login/'
 
