@@ -5,9 +5,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Impro Neuf Showtime</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'img/favicon.png' %}"
+    />
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   </head>
   <body>
+    <!-- Add the title bar section here -->
+    <header class="title-bar">
+      <h1>
+        <img
+          src="{% static 'img/impro-neuf-logo.png' %}"
+          alt="Logo"
+          class="logo"
+        />
+        Impro Neuf Showtime
+      </h1>
+    </header>
+
+    <!-- Add the content section here -->
     <div class="container">{% block content %}{% endblock %}</div>
   </body>
 </html>
