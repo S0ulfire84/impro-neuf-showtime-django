@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 from events.views import show_list, add_show, team_list, add_team
 
 urlpatterns = [
@@ -27,3 +29,6 @@ urlpatterns = [
     path('teams/', team_list, name='team_list'),
     path('teams/add/', add_team, name='add_team'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,12 +1,42 @@
 {% extends "base.html" %} {% block content %}
 <h2>Teams</h2>
-<ul>
-  {% for team in teams %}
-  <li>{{ team.name }}</li>
-  {% empty %}
-  <li>No teams available.</li>
-  {% endfor %}
-</ul>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Captain Name</th>
+      <th>Captain Email</th>
+      <th>Members</th>
+      <th>Description</th>
+      <th>Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for team in teams %}
+    <tr>
+      <td>{{ team.name }}</td>
+      <td>{{ team.captain_name }}</td>
+      <td>{{ team.captain_email }}</td>
+      <td>{{ team.members }}</td>
+      <td>{{ team.description }}</td>
+      <td>
+        {% if team.image %}
+        <img
+          src="{{ team.image.url }}"
+          alt="{{ team.name }}'s image"
+          style="max-width: 100px; max-height: 100px"
+        />
+        {% else %} No image available {% endif %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="6">No teams available.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 <a href="{% url 'add_team' %}">Add New Team</a>
 {% endblock %}
