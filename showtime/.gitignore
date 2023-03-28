@@ -47,3 +47,5 @@ desktop.ini
 
 # Image uploads
 team_images/
+
+*.env
