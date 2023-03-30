@@ -30,7 +30,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['impro-neuf-showtime.herokuapp.com'] # For Heroku production
 
 LOGIN_URL = '/login/'
-
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 

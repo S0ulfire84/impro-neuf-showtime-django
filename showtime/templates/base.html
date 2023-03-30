@@ -23,6 +23,11 @@
         />
         Impro Neuf Showtime
       </h1>
+      <nav>
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="logout-link">Logout</a>
+        {% endif %}
+      </nav>
     </header>
 
     <!-- Add the wrapper element -->

@@ -71,10 +71,12 @@ def remove_show(request, show_id):
 #   WORKSHOPS     #
 ###################
 
+@login_required
 def workshop_list(request):
     workshops = Workshop.objects.all()
     return render(request, 'workshops/workshop_list.html', {'workshops': workshops})
 
+@login_required
 def add_workshop(request):
     if request.method == 'POST':
         form = WorkshopForm(request.POST, request.FILES)
@@ -85,6 +87,7 @@ def add_workshop(request):
         form = WorkshopForm()
     return render(request, 'workshops/add_workshop.html', {'form': form})
 
+@login_required
 def edit_workshop(request, workshop_id):
     workshop = get_object_or_404(Workshop, id=workshop_id)
     if request.method == 'POST':
@@ -96,6 +99,7 @@ def edit_workshop(request, workshop_id):
         form = WorkshopForm(instance=workshop)
     return render(request, 'workshops/edit_workshop.html', {'form': form, 'workshop_id': workshop_id})
 
+@login_required
 def remove_workshop(request, workshop_id):
     workshop = get_object_or_404(Workshop, id=workshop_id)
     if request.method == 'POST':
