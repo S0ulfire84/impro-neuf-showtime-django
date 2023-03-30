@@ -3,10 +3,16 @@ from django.contrib.auth.decorators import login_required
 from .models import Show, Team
 from .forms import ShowForm, TeamForm
 
-# Home
+###################
+#      HOME       #
+###################
 @login_required
 def home(request):
     return render(request, 'home.html')
+
+###################
+#     SHOWS       #
+###################
 
 # Show List
 @login_required
@@ -22,7 +28,7 @@ def show_list(request):
         form = ShowForm()
 
     context = {'shows': shows, 'form': form}
-    return render(request, 'show_list.html', context)
+    return render(request, 'shows/show_list.html', context)
 
 # Add Show
 @login_required
@@ -36,14 +42,18 @@ def add_show(request):
         form = ShowForm()
 
     context = {'form': form}
-    return render(request, 'add_show.html', context)
+    return render(request, 'shows/add_show.html', context)
+
+###################
+#      TEAMS      #
+###################
 
 # Team List
 @login_required
 def team_list(request):
     teams = Team.objects.all()
     context = {'teams': teams}
-    return render(request, 'team_list.html', context)
+    return render(request, 'teams/team_list.html', context)
 
 # Add Team
 @login_required
@@ -57,8 +67,9 @@ def add_team(request):
         form = TeamForm()
 
     context = {'form': form}
-    return render(request, 'add_team.html', context)
+    return render(request, 'teams/add_team.html', context)
 
+# Edit Team
 @login_required
 def edit_team(request, team_id):
     team = get_object_or_404(Team, id=team_id)
@@ -72,12 +83,13 @@ def edit_team(request, team_id):
         form = TeamForm(instance=team)
 
     context = {'form': form, 'team': team}
-    return render(request, 'edit_team.html', context)
+    return render(request, 'teams/edit_team.html', context)
 
+# Remove Team
 @login_required
 def remove_team(request, team_id):
     team = get_object_or_404(Team, id=team_id)
     if request.method == 'POST':
         team.delete()
         return redirect('team_list')
-    return render(request, 'remove_team.html', {'team': team})
+    return render(request, 'teams/remove_team.html', {'team': team})
