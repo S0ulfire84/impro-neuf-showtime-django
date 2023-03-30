@@ -109,3 +109,14 @@ The following steps were followed to set this up in Heroku:
    heroku config:set AWS_STORAGE_BUCKET_NAME=<your_bucket_name>
    heroku config:set AWS_S3_REGION_NAME=<your_bucket_region>
    ```
+
+# Creating a Django secret key
+
+The settings_production.py points to an environment variable to get Django to work, called DJANGO_SECRET_KEY.
+
+This has to be configured in Heroku in order for the application to run.
+
+You can generate a key running `py utils/create-random-secret-key.py`
+
+Then update the secret key in Heroku running:
+heroku config:set DJANGO_SECRET_KEY='your-secret-key-here'
