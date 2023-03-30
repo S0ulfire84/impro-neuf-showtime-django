@@ -5,12 +5,29 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Event(models.Model):
+
+    LANGUAGE_CHOICES = [
+        ('English', 'English'),
+        ('Norwegian', 'Norwegian'),
+        ('Bilingual', 'Bilingual'),
+    ]
+
+    ROOM_CHOICES = [
+        ('Betong', 'Betong'),
+        ('Klubbscenen', 'Klubbscenen'),
+        ('Lillesalen', 'Lillesalen'),
+        ('Teaterscenen', 'Teaterscenen'),
+        ('Biblioteket', 'Biblioteket'),
+        ('Jan P. Syses sal', 'Jan P. Syses sal'),
+        ('Galleriet', 'Galleriet'),
+    ]
+
     title = models.CharField(max_length=100)
     description = models.TextField()
-    language = models.CharField(max_length=10)
+    language = models.CharField(max_length=10, choices=LANGUAGE_CHOICES)
     fb_event = models.URLField(blank=True, null=True)
     ticketco = models.URLField(blank=True, null=True)
-    room = models.CharField(max_length=50)
+    room = models.CharField(max_length=50, choices=ROOM_CHOICES)
     datetime = models.DateTimeField()
     duration_hours = models.DecimalField(max_digits=4, decimal_places=1)
 
