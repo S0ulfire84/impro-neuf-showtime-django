@@ -1,12 +1,49 @@
 {% extends "base.html" %} {% block content %}
 <h2>Shows</h2>
-<ul>
-  {% for show in shows %}
-  <li>{{ show.event.title }}</li>
-  {% empty %}
-  <li>No shows available.</li>
-  {% endfor %}
-</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Language</th>
+      <th>Facebook Event</th>
+      <th>TicketCo</th>
+      <th>Room</th>
+      <th>Date and Time</th>
+      <th>Duration (hours)</th>
+      <th>Teams</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for show in shows %}
+    <tr>
+      <td>{{ show.title }}</td>
+      <td>{{ show.description }}</td>
+      <td>{{ show.language }}</td>
+      <td><a href="{{ show.fb_event }}">{{ show.fb_event }}</a></td>
+      <td><a href="{{ show.ticketco }}">{{ show.ticketco }}</a></td>
+      <td>{{ show.room }}</td>
+      <td>{{ show.datetime|date:"Y-m-d H:i" }}</td>
+      <td>{{ show.duration_hours }}</td>
+      <td>
+        {% if show.team1 %}{{ show.team1.name }}{% endif %} {% if show.team2 %},
+        {{ show.team2.name }}{% endif %} {% if show.team3 %}, {{ show.team3.name
+        }}{% endif %} {% if show.team4 %}, {{ show.team4.name }}{% endif %}
+      </td>
+      <td>
+        {% comment %} <a href="{% url 'edit_show' show.id %}">Edit</a> |
+        <a href="{% url 'remove_show' show.id %}">Remove</a> {% endcomment %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="10">No shows available.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 <a href="{% url 'add_show' %}">Add New Show</a>
 {% endblock %}
