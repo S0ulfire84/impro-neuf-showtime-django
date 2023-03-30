@@ -28,8 +28,15 @@ class Team(models.Model):
     def __str__(self):
         return self.name
 
-class Show(models.Model):
-    event = models.OneToOneField(Event, on_delete=models.CASCADE, primary_key=True)
+class Show(Event):
+    event = models.OneToOneField(
+        Event,
+        on_delete=models.CASCADE,
+        parent_link=True,
+        primary_key=True,
+        related_name='show',
+        related_query_name='show',
+    )
     team1 = models.ForeignKey(Team, on_delete=models.SET_NULL, related_name='team1_shows', blank=True, null=True)
     team2 = models.ForeignKey(Team, on_delete=models.SET_NULL, related_name='team2_shows', blank=True, null=True)
     team3 = models.ForeignKey(Team, on_delete=models.SET_NULL, related_name='team3_shows', blank=True, null=True)
@@ -39,8 +46,15 @@ class Show(models.Model):
         return f"Show for {self.event.title}"
     
 
-class Workshop(models.Model):
-    event = models.OneToOneField(Event, on_delete=models.CASCADE, primary_key=True)
+class Workshop(Event):
+    event = models.OneToOneField(
+        Event,
+        on_delete=models.CASCADE,
+        parent_link=True,
+        primary_key=True,
+        related_name='workshop',
+        related_query_name='workshop',
+    )
     leader_name = models.CharField(max_length=100)
     leader_email = models.EmailField()
     coleader_name = models.CharField(max_length=100, blank=True, null=True)
