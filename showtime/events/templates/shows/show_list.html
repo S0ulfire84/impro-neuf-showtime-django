@@ -22,8 +22,20 @@
       <td>{{ show.title }}</td>
       <td>{{ show.description }}</td>
       <td>{{ show.language }}</td>
-      <td><a href="{{ show.fb_event }}">{{ show.fb_event }}</a></td>
-      <td><a href="{{ show.ticketco }}">{{ show.ticketco }}</a></td>
+      <td>
+        {% if show.event.fb_event %}
+        <a href="{{ show.event.fb_event }}" target="_blank">View event</a>
+        {% else %}
+        <button type="button">Create event</button>
+        {% endif %}
+      </td>
+      <td>
+        {% if show.event.ticketco %}
+        <a href="{{ show.event.ticketco }}" target="_blank">View TicketCo</a>
+        {% else %}
+        <button type="button">Create TicketCo</button>
+        {% endif %}
+      </td>
       <td>{{ show.room }}</td>
       <td>{{ show.datetime|date:"Y-m-d H:i" }}</td>
       <td>{{ show.duration_hours }}</td>
