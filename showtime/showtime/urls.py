@@ -18,16 +18,23 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-from events.views import show_list, add_show, team_list, add_team
 from events import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    
+    # Home page
     path('', views.home, name='home'),
+
+    # Shows
     path('shows/', views.show_list, name='show_list'),
     path('shows/add/', views.add_show, name='add_show'),
+    path('shows/edit/<int:show_id>/', views.edit_show, name='edit_show'),
+    path('shows/remove/<int:show_id>/', views.remove_show, name='remove_show'),
+
+    # Teams
     path('teams/', views.team_list, name='team_list'),
     path('teams/add/', views.add_team, name='add_team'),
     path('teams/edit/<int:team_id>/', views.edit_team, name='edit_team'),

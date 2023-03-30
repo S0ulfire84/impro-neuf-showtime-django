@@ -1,0 +1,9 @@
+{% extends "base.html" %} {% block content %}
+<h2>Remove Show</h2>
+<p>Are you sure you want to remove the show '{{ show.title }}'?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Yes, remove show</button>
+  <a href="{% url 'show_list' %}">Cancel</a>
+</form>
+{% endblock %}

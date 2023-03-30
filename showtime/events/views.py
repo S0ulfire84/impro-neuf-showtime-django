@@ -44,6 +44,28 @@ def add_show(request):
     context = {'form': form}
     return render(request, 'shows/add_show.html', context)
 
+# Edit Show
+@login_required
+def edit_show(request, show_id):
+    show = get_object_or_404(Show, id=show_id)
+    if request.method == 'POST':
+        form = ShowForm(request.POST, request.FILES, instance=show)
+        if form.is_valid():
+            form.save()
+            return redirect('show_list')
+    else:
+        form = ShowForm(instance=show)
+    return render(request, 'shows/edit_show.html', {'form': form, 'show_id': show_id})
+
+# Remove Show
+@login_required
+def remove_show(request, show_id):
+    show = get_object_or_404(Show, id=show_id)
+    if request.method == 'POST':
+        show.delete()
+        return redirect('show_list')
+    return render(request, 'shows/remove_show.html', {'show': show})
+
 ###################
 #      TEAMS      #
 ###################

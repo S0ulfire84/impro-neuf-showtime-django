@@ -29,12 +29,11 @@
       <td>{{ show.duration_hours }}</td>
       <td>
         {% if show.team1 %}{{ show.team1.name }}{% endif %} {% if show.team2 %},
-        {{ show.team2.name }}{% endif %} {% if show.team3 %}, {{ show.team3.name
-        }}{% endif %} {% if show.team4 %}, {{ show.team4.name }}{% endif %}
+        {{ show.team2.name }}{% endif %} {% if show.team3 %}, {{ show.team3.name }}{% endif %} {% if show.team4 %}, {{ show.team4.name }}{% endif %}
       </td>
       <td>
-        {% comment %} <a href="{% url 'edit_show' show.id %}">Edit</a> |
-        <a href="{% url 'remove_show' show.id %}">Remove</a> {% endcomment %}
+        <a href="{% url 'edit_show' show.id %}">Edit</a> |
+        <a href="{% url 'remove_show' show.id %}">Remove</a>
       </td>
     </tr>
     {% empty %}
