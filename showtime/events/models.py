@@ -56,7 +56,7 @@ class Workshop(models.Model):
 def delete_team_image(team):
     if team.image:
         if hasattr(default_storage, 'delete'):
-            default_storage.delete(team.image.path)
+            default_storage.delete(team.image.name)
         else:
             team.image.delete()
 

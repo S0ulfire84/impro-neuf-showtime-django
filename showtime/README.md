@@ -120,3 +120,11 @@ You can generate a key running `py utils/create-random-secret-key.py`
 
 Then update the secret key in Heroku running:
 heroku config:set DJANGO_SECRET_KEY='your-secret-key-here'
+
+# Debugging problems in production
+
+In production, there is no debug mode to assist, so it is hard to tell what makes the application fail.
+
+However, the server logs do output debug logs. In order to check the logs, do:
+
+`heroku logs --tail --app impro-neuf-showtime`
