@@ -27,10 +27,6 @@ class Team(models.Model):
 
     def __str__(self):
         return self.name
-    
-    @receiver(pre_delete, sender=Team)
-    def delete_image_on_team_delete(sender, instance, **kwargs):
-        delete_team_image(instance)
 
 class Show(models.Model):
     event = models.OneToOneField(Event, on_delete=models.CASCADE, primary_key=True)
@@ -63,3 +59,7 @@ def delete_team_image(team):
             default_storage.delete(team.image.path)
         else:
             team.image.delete()
+
+@receiver(pre_delete, sender=Team)
+def delete_image_on_team_delete(sender, instance, **kwargs):
+    delete_team_image(instance)
