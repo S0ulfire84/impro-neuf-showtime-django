@@ -34,6 +34,12 @@ urlpatterns = [
     path('shows/edit/<int:show_id>/', views.edit_show, name='edit_show'),
     path('shows/remove/<int:show_id>/', views.remove_show, name='remove_show'),
 
+    # Workshops
+    path('workshops/', views.workshop_list, name='workshop_list'),
+    path('workshops/add/', views.add_workshop, name='add_workshop'),
+    path('workshops/edit/<int:workshop_id>/', views.edit_workshop, name='edit_workshop'),
+    path('workshops/remove/<int:workshop_id>/', views.remove_workshop, name='remove_workshop'),
+
     # Teams
     path('teams/', views.team_list, name='team_list'),
     path('teams/add/', views.add_team, name='add_team'),

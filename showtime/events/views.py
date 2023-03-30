@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Show, Team
-from .forms import ShowForm, TeamForm
+from .models import Show, Team, Workshop
+from .forms import ShowForm, TeamForm, WorkshopForm
 
 ###################
 #      HOME       #
@@ -65,6 +65,43 @@ def remove_show(request, show_id):
         show.delete()
         return redirect('show_list')
     return render(request, 'shows/remove_show.html', {'show': show})
+
+
+###################
+#   WORKSHOPS     #
+###################
+
+def workshop_list(request):
+    workshops = Workshop.objects.all()
+    return render(request, 'workshops/workshop_list.html', {'workshops': workshops})
+
+def add_workshop(request):
+    if request.method == 'POST':
+        form = WorkshopForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('workshop_list')
+    else:
+        form = WorkshopForm()
+    return render(request, 'workshops/add_workshop.html', {'form': form})
+
+def edit_workshop(request, workshop_id):
+    workshop = get_object_or_404(Workshop, id=workshop_id)
+    if request.method == 'POST':
+        form = WorkshopForm(request.POST, request.FILES, instance=workshop)
+        if form.is_valid():
+            form.save()
+            return redirect('workshop_list')
+    else:
+        form = WorkshopForm(instance=workshop)
+    return render(request, 'workshops/edit_workshop.html', {'form': form, 'workshop_id': workshop_id})
+
+def remove_workshop(request, workshop_id):
+    workshop = get_object_or_404(Workshop, id=workshop_id)
+    if request.method == 'POST':
+        workshop.delete()
+        return redirect('workshop_list')
+    return render(request, 'workshops/remove_workshop.html', {'workshop': workshop})
 
 ###################
 #      TEAMS      #

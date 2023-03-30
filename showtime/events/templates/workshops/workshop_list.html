@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block content %}
+<h2>Workshops</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Language</th>
+      <th>Room</th>
+      <th>Date and Time</th>
+      <th>Duration (hours)</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for workshop in workshops %}
+    <tr>
+      <td>{{ workshop.title }}</td>
+      <td>{{ workshop.description }}</td>
+      <td>{{ workshop.language }}</td>
+      <td>{{ workshop.room }}</td>
+      <td>{{ workshop.datetime }}</td>
+      <td>{{ workshop.duration_hours }}</td>
+      <td>
+        <a href="{% url 'edit_workshop' workshop.id %}">Edit</a> |
+        <a href="{% url 'remove_workshop' workshop.id %}">Remove</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="7">No workshops available.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="{% url 'add_workshop' %}">Add New Workshop</a>
+{% endblock %}
