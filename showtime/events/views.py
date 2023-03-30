@@ -11,6 +11,12 @@ def home(request):
     return render(request, 'home.html')
 
 ###################
+# PRIVACY POLICY  #
+###################
+def privacy_policy(request):
+    return render(request, 'privacy_policy.html')
+
+###################
 #     SHOWS       #
 ###################
 

@@ -28,6 +28,9 @@ urlpatterns = [
     # Home page
     path('', views.home, name='home'),
 
+    # Privacy policy
+    path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
+
     # Shows
     path('shows/', views.show_list, name='show_list'),
     path('shows/add/', views.add_show, name='add_show'),
