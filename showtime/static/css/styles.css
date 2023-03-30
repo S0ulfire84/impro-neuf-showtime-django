@@ -110,3 +110,23 @@ a:hover {
   flex-grow: 1;
   padding: 1rem;
 }
+
+/* Homepage */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.home-logo {
+  max-width: 50%;
+  height: auto;
+}
+
+.home-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}

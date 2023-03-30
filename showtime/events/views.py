@@ -3,6 +3,11 @@ from django.contrib.auth.decorators import login_required
 from .models import Show, Team
 from .forms import ShowForm, TeamForm
 
+# Home
+@login_required
+def home(request):
+    return render(request, 'home.html')
+
 # Show List
 @login_required
 def show_list(request):
