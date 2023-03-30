@@ -32,7 +32,8 @@ py manage.py migrate
    `py -m pip freeze > requirements.txt`
 
 2. Commit your changes to the git repo.
-3. Update the git in Heroku: git push heroku main
+3. Update the git in Heroku:
+   `git push heroku main`
 
 # Installing on Heroku
 
