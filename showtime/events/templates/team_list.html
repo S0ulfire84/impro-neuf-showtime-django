@@ -10,6 +10,7 @@
       <th>Members</th>
       <th>Description</th>
       <th>Image</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -28,6 +29,10 @@
           style="max-width: 100px; max-height: 100px"
         />
         {% else %} No image available {% endif %}
+      </td>
+      <td>
+        <a href="{% url 'edit_team' team.id %}">Edit</a> |
+        <a href="{% url 'remove_team' team.id %}">Remove</a>
       </td>
     </tr>
     {% empty %}

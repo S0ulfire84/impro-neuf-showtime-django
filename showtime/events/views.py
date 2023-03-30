@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Show, Team
 from .forms import ShowForm, TeamForm
@@ -53,3 +53,26 @@ def add_team(request):
 
     context = {'form': form}
     return render(request, 'add_team.html', context)
+
+@login_required
+def edit_team(request, team_id):
+    team = get_object_or_404(Team, id=team_id)
+
+    if request.method == 'POST':
+        form = TeamForm(request.POST, request.FILES, instance=team)
+        if form.is_valid():
+            form.save()
+            return redirect('team_list')
+    else:
+        form = TeamForm(instance=team)
+
+    context = {'form': form, 'team': team}
+    return render(request, 'edit_team.html', context)
+
+@login_required
+def remove_team(request, team_id):
+    team = get_object_or_404(Team, id=team_id)
+    if request.method == 'POST':
+        team.delete()
+        return redirect('team_list')
+    return render(request, 'remove_team.html', {'team': team})

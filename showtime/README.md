@@ -6,7 +6,7 @@ This program needs Python >=3.8 to run. If your version of Python is Python 2.X,
 
 ```
 alias py=python3
-py ???
+py manage.py runserver
 ```
 
 # Add pip modules

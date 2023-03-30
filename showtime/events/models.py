@@ -1,4 +1,7 @@
 from django.db import models
+from django.core.files.storage import default_storage
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 
 # Create your models here.
 class Event(models.Model):
@@ -25,6 +28,9 @@ class Team(models.Model):
     def __str__(self):
         return self.name
     
+    @receiver(pre_delete, sender=Team)
+    def delete_image_on_team_delete(sender, instance, **kwargs):
+        delete_team_image(instance)
 
 class Show(models.Model):
     event = models.OneToOneField(Event, on_delete=models.CASCADE, primary_key=True)
@@ -48,3 +54,12 @@ class Workshop(models.Model):
 
     def __str__(self):
         return f"Workshop for {self.event.title}"
+    
+
+# This is here to delete images from Heroku, this is images, videos, etc.
+def delete_team_image(team):
+    if team.image:
+        if hasattr(default_storage, 'delete'):
+            default_storage.delete(team.image.path)
+        else:
+            team.image.delete()

@@ -19,15 +19,18 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 from events.views import show_list, add_show, team_list, add_team
+from events import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('shows/', show_list, name='show_list'),
-    path('shows/add/', add_show, name='add_show'),
-    path('teams/', team_list, name='team_list'),
-    path('teams/add/', add_team, name='add_team'),
+    path('shows/', views.show_list, name='show_list'),
+    path('shows/add/', views.add_show, name='add_show'),
+    path('teams/', views.team_list, name='team_list'),
+    path('teams/add/', views.add_team, name='add_team'),
+    path('teams/edit/<int:team_id>/', views.edit_team, name='edit_team'),
+    path('teams/remove/<int:team_id>/', views.remove_team, name='remove_team'),
 ]
 
 if settings.DEBUG:

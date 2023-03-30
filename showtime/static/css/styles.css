@@ -43,7 +43,7 @@ tr:nth-child(odd) {
 }
 
 tr:hover {
-  background-color: #fc5050;
+  background-color: #303030;
   cursor: pointer;
 }
 
@@ -53,7 +53,7 @@ a {
 }
 
 a:hover {
-  color: #45a049;
+  color: #fff;
 }
 
 /* Add these styles for the title bar */
